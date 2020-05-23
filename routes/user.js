@@ -2,14 +2,9 @@ const express = require('express')
 const router = express.Router()
 const User = require("../models/User");
 
-var userDetail={
-    "email":"ashish@gmail.com",
-    "name":"ashish"
-}
-
-router.get('/', (req, res, next) => {
-    console.log("user hit>>>")
-    User.create({"email":userDetail.email,"name":userDetail.name},function(err,result){
+router.get("/:name",( req, res, next) => {
+    console.log("user hit>>>",req.params)
+    User.create({"name":req.params.name},function(err,result){
         if(err){
             console.log("error in inserting in db",err)
         }else{
